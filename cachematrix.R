@@ -1,10 +1,9 @@
-## The purpose of the following two function is to cache the computed inverse 
+## The purpose of the following two functions is to cache the computed inverse 
 ## of some matrix 'x' so that we do not have to repeatedly compute it. This 
 ## allows us to save computational resources.
 
 ## Creates a special matrix object that is able to cache its inverse.
 ## Also provides useful getters and setters.
-
 makeCacheMatrix <- function(x = matrix()) {
 	invMatrix <- NULL
 	setmatrix <- function(y) {
@@ -15,10 +14,10 @@ makeCacheMatrix <- function(x = matrix()) {
 	getmatrix <- function() x
 	setinvmatrix <- function(inverse) invMatrix <<- inverse
 	getinvmatrix <- function() invMatrix
-	list(	setmatrix = setmatrix,
-		getmatrix = getmatrix,
-		setinvmatrix = setinvmatrix,
-		getinvmatrix = getinvmatrix
+	list(	setmatrix	= setmatrix,
+		getmatrix	= getmatrix,
+		setinvmatrix	= setinvmatrix,
+		getinvmatrix	= getinvmatrix
 	);
 }
 
@@ -28,18 +27,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## it just returns the cached value.
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+
 	invmatrix <- x$getinvmatrix()
-	##print("got inv matrix")
 	if(is.null(invmatrix)) {
-		##print("invmatrix is null")
 		m <- x$getmatrix()
-		##print("got orig matrix")
-		invmatrix <- solve(m)
-		##print("calculated inv matrix")
+		invmatrix <- solve(m, ...)
 		x$setinvmatrix(invmatrix)
-		##print("setting inv matrix")
 		return(invmatrix)
 	}
-	##print("returning invmatrix b/c not null")
-	x$getinvmatrix()
+	message("getting cached inverse")
+	invmatrix
 }
