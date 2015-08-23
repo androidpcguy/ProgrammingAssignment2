@@ -2,8 +2,8 @@
 ## of some matrix 'x' so that we do not have to repeatedly compute it. This 
 ## allows us to save computational resources.
 
-## Creates a special matrix object that is able to cache its inverse.
-## Also provides useful getters and setters.
+## Creates and returns a special matrix object that is able to cache its inverse.
+## Provides useful getters and setters.
 makeCacheMatrix <- function(x = matrix()) {
 	invMatrix <- NULL
 	
@@ -18,11 +18,12 @@ makeCacheMatrix <- function(x = matrix()) {
 	
 	getinvmatrix <- function() invMatrix
 	
-	list(	setmatrix	= setmatrix,
+	list(	
+		setmatrix	= setmatrix,
 		getmatrix	= getmatrix,
 		setinvmatrix	= setinvmatrix,
 		getinvmatrix	= getinvmatrix
-	);
+	)
 }
 
 
@@ -40,6 +41,6 @@ cacheSolve <- function(x, ...) {
 		x$setinvmatrix(invmatrix)
 		return(invmatrix)
 	}
-	message("getting cached inverse")
+	message("returning cached inverse")
 	invmatrix
 }
