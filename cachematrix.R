@@ -6,14 +6,18 @@
 ## Also provides useful getters and setters.
 makeCacheMatrix <- function(x = matrix()) {
 	invMatrix <- NULL
+	
 	setmatrix <- function(y) {
 		x <<- y
 		invMatrix <<- NULL
 	}
 
 	getmatrix <- function() x
+	
 	setinvmatrix <- function(inverse) invMatrix <<- inverse
+	
 	getinvmatrix <- function() invMatrix
+	
 	list(	setmatrix	= setmatrix,
 		getmatrix	= getmatrix,
 		setinvmatrix	= setinvmatrix,
@@ -29,6 +33,7 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 
 	invmatrix <- x$getinvmatrix()
+	
 	if(is.null(invmatrix)) {
 		m <- x$getmatrix()
 		invmatrix <- solve(m, ...)
